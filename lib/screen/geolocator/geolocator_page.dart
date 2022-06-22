@@ -4,7 +4,6 @@ import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-
 enum _PositionItemType {
   log,
   position,
@@ -42,7 +41,7 @@ class GeolocatorPageState extends State<GeolocatorPage> {
   @override
   void initState() {
     super.initState();
-    
+
     _toggleServiceStatusStream();
   }
 
@@ -140,6 +139,7 @@ class GeolocatorPageState extends State<GeolocatorPage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: "btnStream",
             child: (_positionStreamSubscription == null ||
                     _positionStreamSubscription!.isPaused)
                 ? const Icon(Icons.play_arrow)
@@ -157,11 +157,13 @@ class GeolocatorPageState extends State<GeolocatorPage> {
           ),
           sizedBox,
           FloatingActionButton(
+            heroTag: "currentLocation",
             child: const Icon(Icons.my_location),
             onPressed: _getCurrentPosition,
           ),
           sizedBox,
           FloatingActionButton(
+            heroTag: "lastKnownPosition",
             child: const Icon(Icons.bookmark),
             onPressed: _getLastKnownPosition,
           ),
@@ -179,9 +181,9 @@ class GeolocatorPageState extends State<GeolocatorPage> {
 
     final position = await _geolocatorPlatform.getCurrentPosition();
     _updatePositionList(
-      _PositionItemType.position,
-      position.toString(),
-    );
+        _PositionItemType.position,
+        // position.toString(),
+        "Lat: ${position.latitude} and Long: ${position.longitude}");
   }
 
   Future<bool> _handlePermission() async {

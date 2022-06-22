@@ -1,25 +1,81 @@
-import 'dart:async';
-import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:gps_tracker/geolocator/geolocator_page.dart';
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Gps Tracker',
+import 'package:flutter/services.dart';
+import 'package:gps_tracker/screen/geolocator/geolocator_page.dart';
+import 'package:gps_tracker/screen/location/location_page.dart';
+void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const GeolocatorPage(title: 'Flutter Gps Tracker'),
+      home: MyApp(),
+  ));
+
+class MyApp extends StatefulWidget {
+  @override
+  MyAppState createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  onButtonTap(Widget page) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (BuildContext context) => page));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.bottom]);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Flutter GPS Tracker"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15.0),
+        child: ListView(
+          children: <Widget>[
+            MyMenuButton(
+              title: "GPS with Geolocator",
+              actionTap: () {
+                onButtonTap(
+                  const GeolocatorPage(title: 'GPS with Geolocator'),
+                );
+              },
+            ),
+            MyMenuButton(
+              title: "GPS with Location",
+              actionTap: () {
+                onButtonTap(
+                  LocationPage(title: "GPS with Location"),
+                );
+              },
+            ),
+            
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyMenuButton extends StatelessWidget {
+  final String? title;
+  final VoidCallback? actionTap;
+
+  MyMenuButton({this.title, this.actionTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: MaterialButton(
+        height: 50.0,
+        color: Theme.of(context).primaryColor,
+        textColor: Colors.white,
+        child: new Text(title!),
+        onPressed: actionTap,
+      ),
     );
   }
 }
