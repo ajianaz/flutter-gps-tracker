@@ -329,6 +329,12 @@ class GeolocatorPageState extends State<GeolocatorPage> {
   }
 
   void _getLastKnownPosition() async {
+    final hasPermission = await _handlePermission();
+
+    if (!hasPermission) {
+      return;
+    }
+
     final position = await _geolocatorPlatform.getLastKnownPosition();
     if (position != null) {
       _updatePositionList(
