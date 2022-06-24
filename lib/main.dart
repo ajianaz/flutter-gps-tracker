@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gps_tracker/screen/geolocator/geolocator_page.dart';
 import 'package:gps_tracker/screen/location/location_page.dart';
+import 'package:gps_tracker/screen/open_street_maps/open_street_maps.dart';
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -48,6 +49,14 @@ class MyAppState extends State<MyApp> {
               actionTap: () {
                 onButtonTap(
                   LocationPage(title: "GPS with Location"),
+                );
+              },
+            ),
+            MyMenuButton(
+              title: "Open Street Maps",
+              actionTap: () {
+                onButtonTap(
+                  OpenStreetMapsScreen(),
                 );
               },
             ),
