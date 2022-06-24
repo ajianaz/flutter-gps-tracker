@@ -20,7 +20,7 @@ class _OpenStreetMapsScreenState extends State<OpenStreetMapsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Live Traking",
+          "Open Street Maps",
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),

@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gps_tracker/screen/geolocator/geolocator_page.dart';
 import 'package:gps_tracker/screen/location/location_page.dart';
-import 'package:gps_tracker/screen/open_street_maps/open_street_maps.dart';
+import 'package:gps_tracker/screen/open_street_maps/open_street_maps_screen.dart';
+import 'package:gps_tracker/screen/syncfusion_maps_shape_layer/syncfusion_maps_screen.dart';
+
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyApp(),
-  ));
+    ));
 
 class MyApp extends StatefulWidget {
   @override
@@ -60,7 +62,16 @@ class MyAppState extends State<MyApp> {
                 );
               },
             ),
-            
+            MyMenuButton(
+              title: "Syncfusion Maps Shape Layer",
+              actionTap: () {
+                onButtonTap(
+                  SyncfusionMapsScreen(
+                    title: "Syncfusion Maps Shape Layer",
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

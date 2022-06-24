@@ -40,6 +40,7 @@ dependencies:
   flutter_map: ^1.1.0
   latlong2: ^0.8.0
   polylabel: ^1.0.1
+  syncfusion_flutter_maps: ^20.1.61
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
