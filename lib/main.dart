@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:gps_tracker/screen/geolocator/geolocator_page.dart';
 import 'package:gps_tracker/screen/location/location_page.dart';
 import 'package:gps_tracker/screen/open_street_maps/open_street_maps_screen.dart';
-import 'package:gps_tracker/screen/syncfusion_maps_shape_layer/syncfusion_maps_screen.dart';
+import 'package:gps_tracker/screen/syncfusion_maps/shape_layer/syncfusion_maps_screen.dart';
+import 'package:gps_tracker/screen/syncfusion_maps/tile_layer/maps_osm.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -68,6 +69,16 @@ class MyAppState extends State<MyApp> {
                 onButtonTap(
                   SyncfusionMapsScreen(
                     title: "Syncfusion Maps Shape Layer",
+                  ),
+                );
+              },
+            ),
+            MyMenuButton(
+              title: "Tile Layer with Maps OSM",
+              actionTap: () {
+                onButtonTap(
+                  MapsOSMPage(
+                    title: "Tile Layer with Maps OSM",
                   ),
                 );
               },
